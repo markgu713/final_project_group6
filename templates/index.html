@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Chocolate Bar Ratings</title>
+  <title>Wine Quality</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
@@ -16,63 +16,63 @@
         <a class="navbar-brand" href="/">Home</a>
       </div>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="/marketplace">Marketplace</a></li>
-          <li><a href="/bean">Bean</a></li>
+          <!-- <li><a href="/marketplace">Marketplace</a></li> -->
         </ul>
     </div>
 </nav>
+<!-- <br>
 <br>
-<br>
-<br>
+<br> -->
 <main>
   <div class="container">
     <div class="row">
       <div class="col-md-12 jumbotron text-center">
-        <img src="https://cdn.shopify.com/s/files/1/0001/0103/t/5/assets/logo.png?v=18177701282721251772" alt="Chocolate Alchemy" width="1000" height="300">
-        <h1>Chocolate Bar Ratings Dashboard</h1>
-        <p>Use the interactive charts below to explore the dataset</p>
+        <img src="https://miro.medium.com/max/1400/1*2ayKmvVZCYaLPl-nmLLp5g.png" alt="Wine" width="500" height="300">
+        <h1>Wine Quality Dashboard</h1>
+        <p></p>
       </div>
     </div>
-  <h1>Chocolate Bar Ratings Dashboard</h1>
-  <section class="posts">
-    <article class="post">
-      <h3>Welcome entrepreneurs and investors of the chocolate world</h3>
-      <p>Please navigate our website to find information on chocolate <br>
-          The best countries to source raw materials<br>
-          Get to know the most important global manufacturers and what type of beans they use in their manufacturing process<br>
-          Establish if there’s a correlation between the origin of the bean and the quality of the final product<br>
-          Explore the relationship between the “purity” of the chocolate and the quality of the final product<br>
-      </p>
-    <div class="row">
-      <div class="col-md-2">
-        <!-- <div class="well">
-          <h5>Company Country Location</h5>
-          <select id="selDataset" onchange="optionChanged(this.value)"></select>
-        </div>
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">Company Country Location</h3>
-          </div>
-          <div id="sample-metadata" class="panel-body"></div>
-        </div> -->
+    <form action="{{ url_for('index') }}" method="POST">
+      <fieldset>
+          <legend>Input values:</legend>
+          Alcohol:
+          <input name="alcohol" type="number" required>
+          <br>
+          <input type="submit">
+      </fieldset>
+    </form>
+    <!-- <form action="{{ url_for('index') }}" method="POST">
+      <div class="form-group">
+        <ul class="list-group" id="filters">
+          <li class="filter list-group-item">
+            <label for="date">Enter Alcohol Level (8%-15%)</label>
+            <div class="slidecontainer">
+              <input name="alcohol" type="range" min="8" max="15" value="10" step="0.1" class="slider" id="myRange" required>
+              <input type="submit">
+              <p>Value: <span id="demo"></span></p>
+            </div>
+            <script>
+              var slider = document.getElementById("myRange");
+              var output = document.getElementById("demo");
+              output.innerHTML = slider.value;
+              
+              slider.oninput = function() {
+                output.innerHTML = this.value;
+              }
+            </script>
+          </li>
+        </ul>
       </div>
-      <div class="col-md-5">
-        <div id="bar"></div>
-      </div>
-      <div class="col-md-5">
-        <div id="gauge"></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div id="bubble"></div>
-      </div>
-    </div>
+      <button id="filter-btn" type="button" class="btn btn-default">Outputs</button>
+    </form> -->
+
+    <h3>Prediction:</h3>
+    <div>{{ prediction }}</div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <!-- <script src="../static/js/app.js"></script> -->
+  <script src="static/js/app.js"></script>
   
 </body>
 

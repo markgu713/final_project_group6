@@ -41,31 +41,6 @@
           <input type="submit">
       </fieldset>
     </form>
-    <!-- <form action="{{ url_for('index') }}" method="POST">
-      <div class="form-group">
-        <ul class="list-group" id="filters">
-          <li class="filter list-group-item">
-            <label for="date">Enter Alcohol Level (8%-15%)</label>
-            <div class="slidecontainer">
-              <input name="alcohol" type="range" min="8" max="15" value="10" step="0.1" class="slider" id="myRange" required>
-              <input type="submit">
-              <p>Value: <span id="demo"></span></p>
-            </div>
-            <script>
-              var slider = document.getElementById("myRange");
-              var output = document.getElementById("demo");
-              output.innerHTML = slider.value;
-              
-              slider.oninput = function() {
-                output.innerHTML = this.value;
-              }
-            </script>
-          </li>
-        </ul>
-      </div>
-      <button id="filter-btn" type="button" class="btn btn-default">Outputs</button>
-    </form> -->
-
     <h3>Prediction:</h3>
     <div>{{ prediction }}</div>
   </div>

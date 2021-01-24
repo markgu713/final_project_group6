@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import LabelEncoder
 
 # load model
-model = load_model('model.h5')
+model = load_model('model/model.h5')
 # summarize model.
 model.summary()
 

@@ -35,8 +35,40 @@
     <form action="{{ url_for('index') }}" method="POST">
       <fieldset>
           <legend>Input values:</legend>
+          <!-- <input name="fixed_acidity" type="range" min="0" max="20" value="7.4" step="0.1" class="slider" id="fixed_acidity" required>
+          <p>Fixed Acidity: <span id="fixed_acidity_output"></span></p>
+          <script>
+            var slider = document.getElementById("fixed_acidity");
+            var output = document.getElementById("fixed_acidity_output");
+            output.innerHTML = slider.value;
+            
+            slider.oninput = function() {
+              output.innerHTML = this.value;
+            }
+          </script>          -->
+          
+          Fixed Acidity: 
+          <input name="fixed_acidity" type="number" min="0" max="20" value="7.1" step="0.1" class="slider" id="fixed_acidity" required>
+          Volatile Acidity:
+          <input name="volatile_acidity" type="number" min="0" max="2" value="0.26" step="0.01" class="slider" id="volatile_acidity" required>
+          Citric Acid:
+          <input name="citric_acid" type="number" min="0" max="1" value="0.49" step="0.01" class="slider" id="citric_acid" required>
+          Residual Sugar:
+          <input name="residual_sugar" type="number" min="0" max="20" value="2.2" step="0.05" class="slider" id="residual_sugar" required>
+          Chlorides:
+          <input name="chlorides" type="number" min="0" max="1" value="0.032" step="0.001" class="slider" id="chlorides" required>
+          Free Sulfur Dioxide:
+          <input name="free_sulfur_dioxide" type="number" min="0" max="100" value="31" step="1" class="slider" id="free_sulfur_dioxide" required>
+          Total Sulfur Dioxide:
+          <input name="total_sulfur_dioxide" type="number" min="0" max="300" value="113" step="1" class="slider" id="total_sulfur_dioxide" required>
+          Density:
+          <input name="density" type="number" min="0.99" max="1.01" value="0.9903" step="0.00001" class="slider" id="density" required>
+          PH:
+          <input name="pH" type="number" min="0" max="5" value="3.37" step="0.01" class="slider" id="pH" required>
+          Sulphates:
+          <input name="sulphates" type="number" min="0" max="2" value="0.42" step="0.01" class="slider" id="sulphates" required>
           Alcohol:
-          <input name="alcohol" type="number" required>
+          <input name="alcohol" type="number" min="5" max="15" value="12.9" step="0.1" class="slider" id="alcohol" required>
           <br>
           <input type="submit">
       </fieldset>
@@ -47,7 +79,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <script src="static/js/app.js"></script>
+  <!-- <script src="static/js/app.js"></script> -->
   
 </body>
 

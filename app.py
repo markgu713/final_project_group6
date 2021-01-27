@@ -37,25 +37,40 @@ app = Flask(__name__)
 def index():
     """Return the homepage."""
     if request.method == 'POST':
+        fixed_acidity = request.form['fixed_acidity']
+        volatile_acidity = request.form['volatile_acidity']
+        citric_acid = request.form['citric_acid']
+        residual_sugar =request.form['residual_sugar']
+        chlorides = request.form['chlorides']
+        free_sulfur_dioxide = request.form['free_sulfur_dioxide']
+        total_sulfur_dioxide = request.form['total_sulfur_dioxide']
+        density = request.form['density']
+        pH = request.form['pH']
+        sulphates = request.form['sulphates']
         alcohol = request.form['alcohol']
-        data = {'fixed acidity':  [5.8, 7.1],
-            'volatile acidity': [0.300, 0.26],
-            'citric acid': [0.33, 0.49],
-            'residual sugar': [3.5, 2.2],
-            'chlorides': [0.033, 0.032],
-            'free sulfur dioxide': [25.0, 31.0],
-            'total sulfur dioxide': [116.0, 113.0],
-            'density': [0.99057, 0.9903],
-            'pH': [3.2, 3.37],
-            'sulphates': [0.44, 0.42],
-            'alcohol': [11.7, 12.9]
+        
+        data = {'fixed acidity':  [fixed_acidity],
+            'volatile acidity': [volatile_acidity],
+            'citric acid': [citric_acid],
+            'residual sugar': [residual_sugar],
+            'chlorides': [chlorides],
+            'free sulfur dioxide': [free_sulfur_dioxide],
+            'total sulfur dioxide': [total_sulfur_dioxide],
+            'density': [density],
+            'pH': [pH],
+            'sulphates': [sulphates],
+            'alcohol': [alcohol]
         }
+
         df = pd.DataFrame (data, columns = ['fixed acidity', 'volatile acidity', 'citric acid', 'residual sugar', 'chlorides', 'free sulfur dioxide', 'total sulfur dioxide', 'density', 'pH', 'sulphates', 'alcohol'])
         X_scaler = MinMaxScaler().fit(df)
         test_scaled = X_scaler.transform(df)
-        encoded_predictions = model.predict_classes(test_scaled[:2])
-
-        return render_template('index.html', prediction = encoded_predictions)
+        encoded_predictions = model.predict_classes(test_scaled[:1])
+        if encoded_predictions[0] == 0:
+            final_prediction = "Bad Quality!"
+        else: 
+            final_prediction = "Good Quality!"
+        return render_template('index.html', prediction = final_prediction)
     else:
         return render_template('index.html')
 

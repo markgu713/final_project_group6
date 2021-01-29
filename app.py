@@ -49,31 +49,44 @@ def index():
         sulphates = request.form['sulphates']
         alcohol = request.form['alcohol']
         
-        data = {'fixed acidity':  [fixed_acidity],
-            'volatile acidity': [volatile_acidity],
-            'citric acid': [citric_acid],
-            'residual sugar': [residual_sugar],
-            'chlorides': [chlorides],
-            'free sulfur dioxide': [free_sulfur_dioxide],
-            'total sulfur dioxide': [total_sulfur_dioxide],
-            'density': [density],
-            'pH': [pH],
-            'sulphates': [sulphates],
-            'alcohol': [alcohol]
+        # data = {'fixed acidity':  [fixed_acidity],
+        #     'volatile acidity': [volatile_acidity],
+        #     'citric acid': [citric_acid],
+        #     'residual sugar': [residual_sugar],
+        #     'chlorides': [chlorides],
+        #     'free sulfur dioxide': [free_sulfur_dioxide],
+        #     'total sulfur dioxide': [total_sulfur_dioxide],
+        #     'density': [density],
+        #     'pH': [pH],
+        #     'sulphates': [sulphates],
+        #     'alcohol': [alcohol]
+        # }
+
+        data = {'fixed acidity':  [5.8, fixed_acidity],
+            'volatile acidity': [0.300, volatile_acidity],
+            'citric acid': [0.33, citric_acid],
+            'residual sugar': [3.5, residual_sugar],
+            'chlorides': [0.033, chlorides],
+            'free sulfur dioxide': [25.0, free_sulfur_dioxide],
+            'total sulfur dioxide': [116.0, total_sulfur_dioxide],
+            'density': [0.99057, density],
+            'pH': [3.2, pH],
+            'sulphates': [0.44, sulphates],
+            'alcohol': [11.7, alcohol]
         }
 
         df = pd.DataFrame (data, columns = ['fixed acidity', 'volatile acidity', 'citric acid', 'residual sugar', 'chlorides', 'free sulfur dioxide', 'total sulfur dioxide', 'density', 'pH', 'sulphates', 'alcohol'])
         X_scaler = MinMaxScaler().fit(df)
         test_scaled = X_scaler.transform(df)
-        encoded_predictions = model.predict_classes(test_scaled[:1])
-        if encoded_predictions[0] == 0:
+        encoded_predictions = model.predict_classes(test_scaled[:2])
+        if encoded_predictions[1] == 0:
             final_prediction = "Bad Quality!"
         else: 
             final_prediction = "Good Quality!"
-        return render_template('index.html', prediction = final_prediction)
+        return render_template('index.html', prediction = final_prediction, fixed_acidity = fixed_acidity)
     else:
         return render_template('index.html')
 
 if __name__ == "__main__":
-    #app.debug = True
+    # app.debug = True
     app.run()

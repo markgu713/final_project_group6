@@ -67,7 +67,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
       <form action="{{ url_for('index') }}" method="POST">
         <!-- <fieldset>
             <legend>Input values:</legend> -->
-            <input name="fixed_acidity" type="range" min="0" max="20" value="7.4" step="0.1" class="slider" id="fixed_acidity" required>
+            <!-- <input name="fixed_acidity" type="range" min="0" max="20" value="7.4" step="0.1" class="slider" id="fixed_acidity" required>
             <p>Fixed Acidity: <span id="fixed_acidity_output"></span></p>
             <script>
               var slider = document.getElementById("fixed_acidity");
@@ -77,43 +77,36 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
               slider.oninput = function() {
                 output.innerHTML = this.value;
               }
-            </script>
+            </script> -->
 
     <!-- End Javascript Form -->
 
 
   
   <div class="w3-row-padding">
-    <div class="w3-col m3">
-      <label>
-          <!-- <i class="fa fa-calendar-o"> -->
-      </i> Alcohol Content</label>
-      <input class="w3-select w3-border" type="number" name="alcohol" min="5" max="15" step="0.5" id="alcohol" required>>
-    </div>
-    <div class="w3-col m3">
-      <label>
-          <!-- <i class="fa fa-calendar-o"> -->
-
-      </i> Density</label>
-      <input class="w3-input w3-border" type="text" placeholder="Usually 7 - 18%">
-    </div>
     <div class="w3-col m2">
-      <label>
-    <!-- <i class="fa fa-male"> -->
-
-      </i> Chlorides </label>
-      <input class="w3-input w3-border" type="number" placeholder="Usually 1">
+      <label></i> Alcohol Content</label>
+      <input class="w3-input w3-border" type="number" placeholder="Usually 5 - 18%" min="5" max="20" step="0.5" id="alcohol" required>
     </div>
+
     <div class="w3-col m2">
-      <label>
-    <!-- <i class="fa fa-child"> -->
-
-      </i>Volatile Acidity</label>
-      <input class="w3-input w3-border" type="number" placeholder="0">
+      <label></i> Density</label>
+      <input class="w3-input w3-border" type="number" placeholder="Between .99 and 1.01" min="0.99000" max="1.01000" step="0.00001" id="density" required>
     </div>
+
+    <div class="w3-col m2">
+      <label></i> Chlorides </label>
+      <input class="w3-input w3-border" type="number" placeholder="Between 0 and 1" min="0.99000" max="1.01000" step="0.00001" id="chlorides" required>
+    </div>
+
+    <div class="w3-col m2">
+      <label></i>Volatile Acidity</label>
+      <input class="w3-input w3-border" type="number" placeholder="Between 0 and 2" min="0" max="2" step="0.01" id="volatile acidity" required>
+    </div>
+
     <div class="w3-col m2">
       <label><i class="fa fa-search"></i> Predict </label>
-      <button class="w3-button w3-block w3-black">Search</button>
+      <button class="w3-button w3-block w3-black">Submit</button>
     </div>
 <!-- 
     Volatile Acidity:
@@ -197,7 +190,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
     <p>We accept: <i class="fa fa-credit-card w3-large"></i> <i class="fa fa-cc-mastercard w3-large"></i> <i class="fa fa-cc-amex w3-large"></i> <i class="fa fa-cc-cc-visa w3-large"></i><i class="fa fa-cc-paypal w3-large"></i></p>
     </div>
     <div class="w3-col l8 12">
-      <!-- Image of location/map -->
+      Image of location/map
       <img src="/w3images/map.jpg" class="w3-image w3-greyscale" style="width:100%;">
     </div>
   </div>
@@ -264,7 +257,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
     <button type="button" class="w3-button w3-red w3-margin-top">Subscribe</button>
   </div>
 
-  <div class="w3-container" id="contact">
+  <!-- <div class="w3-container" id="contact">
     <h2>Contact</h2>
     <p>If you have any questions, do not hesitate to ask them.</p>
     <i class="fa fa-map-marker w3-text-red" style="width:30px"></i> Chicago, US<br>
@@ -276,7 +269,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
       <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Message" required name="Message"></p>
       <p><button class="w3-button w3-black w3-padding-large" type="submit">SEND MESSAGE</button></p>
     </form>
-  </div>
+  </div> -->
 
 <!-- End page content -->
 </div>

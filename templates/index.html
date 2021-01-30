@@ -1,125 +1,473 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+<link rel="stylesheet" type="text/css" href="../static/css/html-style.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+  integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<style>
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Montserrat", sans-serif
+  }
+</style>
 
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>Wine Quality</title>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Wine Quality Test</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Graphs</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown link
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="#">Link A</a></li>
-                <li><a class="dropdown-item" href="#">Link B</a></li>
-                <li><a class="dropdown-item" href="#">Link C</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <style>
-      .carousel-item {
-        height:38rem;
-        background:#777;
-      }
-    </style>
+<body class="w3-light-grey">
 
-    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-      <ol class="carousel-indicators">
-        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
-        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
-        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="../templates/pourdat.jpg" class="d-block w-100" alt="vineyard">
-        </div>
-        <div class="carousel-item">
-          <img src="../templates/photo-1516594915697-87eb3b1c14ea.jpg" class="d-block w-100" alt="wine bottles">
-        </div>
-        <div class="carousel-item">
-          <img src="../templates/1_2ayKmvVZCYaLPl-nmLLp5g.png" class="d-block w-100" alt="wine poured into glass">
-        </div>
-      </div>
-      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </a>
-    </div>
-    <main>
-
- <br> <br> <br> <br>
-    <form action="{{ url_for('index') }}" method="POST">
-      <fieldset>
-          Fixed Acidity
-          <input name="fixed_acidity" type="number" min="0" max="20" value={{fixed_acidity}} step="0.1" class="slider" id="fixed_acidity" required>
-          Volatile Acidity:
-          <input name="volatile_acidity" type="number" min="0" max="2" value="0.26" step="0.01" class="slider" id="volatile_acidity" required>
-          Citric Acid:
-          <input name="citric_acid" type="number" min="0" max="1" value="0.49" step="0.01" class="slider" id="citric_acid" required>
-          Residual Sugar:
-          <input name="residual_sugar" type="number" min="0" max="20" value="2.2" step="0.05" class="slider" id="residual_sugar" required>
-          Chlorides:
-          <input name="chlorides" type="number" min="0" max="1" value="0.032" step="0.001" class="slider" id="chlorides" required>
-          Free Sulfur Dioxide:
-          <input name="free_sulfur_dioxide" type="number" min="0" max="100" value="31" step="1" class="slider" id="free_sulfur_dioxide" required>
-          Total Sulfur Dioxide:
-          <input name="total_sulfur_dioxide" type="number" min="0" max="300" value="113" step="1" class="slider" id="total_sulfur_dioxide" required>
-          Density:
-          <input name="density" type="number" min="0.99" max="1.01" value="0.9903" step="0.00001" class="slider" id="density" required>
-          PH:
-          <input name="pH" type="number" min="0" max="5" value="3.37" step="0.01" class="slider" id="pH" required>
-          Sulphates:
-          <input name="sulphates" type="number" min="0" max="2" value="0.42" step="0.01" class="slider" id="sulphates" required>
-          Alcohol:
-          <input name="alcohol" type="number" min="5" max="15" value="12.9" step="0.1" class="slider" id="alcohol" required>
-          <br>
-          <input type="submit">
-      </fieldset>
-    </form>
-    <h3>Prediction:</h3>
-    <div>{{ prediction }}</div>
+  <!-- Navigation Bar -->
+  <div class="w3-bar w3-white w3-large">
+    <a href="#" class="w3-bar-item w3-button w3-red w3-mobile"><i
+        class="fas fa-wine-glass w3-margin-right"></i>Winemaker's Guide</a>
+    <a href="#predict" class="w3-bar-item w3-button w3-mobile">Predict</a>
+    <a href="#about" class="w3-bar-item w3-button w3-mobile">About</a>
+    <!-- <a href="#contact" class="w3-bar-item w3-button w3-mobile">Contact</a>
+  <a href="#contact" class="w3-bar-item w3-button w3-right w3-light-grey w3-mobile">Book Now</a> -->
   </div>
 
-    <!-- Optional JavaScript; choose one of the two! -->
+  <!-- Header Tabs-->
+  <header class="w3-display-container w3-content" style="max-width:1500px">
+    <img class="w3-image" src="../static/image/photo-1516594915697-87eb3b1c14ea.jpg" alt="London" width="1500"
+      height="700">
+    <div class="w3-display-middle" style="width:65%">
+      <div class="w3-bar w3-black">
+        <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Deep');"><i
+            class="fa fa-plane w3-margin-right"></i>Deep Learning</button>
+        <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Logistic');"><i
+            class="fa fa-bed w3-margin-right"></i>Logistic Regression</button>
+        <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Boost');"><i
+            class="fa fa-car w3-margin-right"></i>Gradient Boosting</button>
+      </div>
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script> -->
+      <!-- Tabs -->
+      <div id="Deep" class="w3-container w3-white w3-padding-16 myLink">
+        <div class="w3-row-padding">
+          <h3>Deep Learning Model</h3>
+          <p>Please enter the measures below to return your wine quality prediction.</p>
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
+          <form class="w3-container" action="{{ url_for('index') }}" method="POST">
+            <!-- <fieldset> -->
+            <div class="row">
+              <div class="col">
+                <label></i> Alcohol Content</label>
+                <input name="alcohol" class="w3-input w3-border" type="number" value={{alcohol}} placeholder="Usually 5 - 18%" min="5" max="20"
+                  step="0.1" id="alcohol" required>
+              </div>
+
+              <div class="col">
+                <label></i> Density</label>
+                <input name="density" class="w3-input w3-border" type="number" value={{density}} placeholder="Between .99 and 1.01" min="0.99000"
+                  max="1.01000" step="0.00001" id="density" required>
+              </div>
+
+              <div class="col">
+                <label></i> Chlorides </label>
+                <input name="chlorides" class="w3-input w3-border" type="number" value={{chlorides}} placeholder="Between 0 and 1" min="0"
+                  max="1" step="0.00001" id="chlorides" required>
+              </div>
+
+              <div class="col">
+                <label></i>Volatile Acidity</label>
+                <input name="volatile_acidity" class="w3-input w3-border" type="number" value={{volatile_acidity}} placeholder="Between 0 and 2" min="0" max="2"
+                  step="0.01" id="volatile_acidity" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <label></i>Fixed Acidity</label>
+                <input name="fixed_acidity" class="w3-input w3-border" type="number" value={{fixed_acidity}} placeholder="Between 0 and 20" min="0" max="20"
+                  step="0.1" id="fixed_acidity" required>
+              </div>
+
+              <div class="col">
+                <label></i>Citric Acid</label>
+                <input name="citric_acid" class="w3-input w3-border" type="number" value={{citric_acid}} placeholder="Between 0 and 1" min="0" max="1"
+                  step="0.01" id="citric_acid" required>
+              </div>
+
+              <div class="col">
+                <label></i>Residual Sugar</label>
+                <input name="residual_sugar" class="w3-input w3-border" type="number" value={{residual_sugar}} placeholder="Between 0 and 20" min="0" max="20"
+                  step="0.05" id="residual_sugar" required>
+              </div>
+
+              <div class="col">
+                <label></i>PH</label>
+                <input name="pH" class="w3-input w3-border" type="number" value={{pH}} placeholder="Between 0 and 5" min="0" max="5"
+                  step="0.01" id="pH" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <label></i>Sulphates</label>
+                <input name="sulphates" class="w3-input w3-border" type="number" value={{sulphates}} placeholder="Between 0 and 2" min="0" max="2"
+                  step="0.01" id="sulphates" required>
+              </div>
+
+              <div class="col">
+                <label></i>Free Sulfur Dioxide</label>
+                <input name="free_sulfur_dioxide" class="w3-input w3-border" type="number" value={{free_sulfur_dioxide}} placeholder="Between 0 and 2" min="0" max="100" step="1"
+                  id="free_sulfur_dioxide" required>
+              </div>
+
+              <div class="col">
+                <label></i>Total Sulfur Dioxide</label>
+                <input name="total_sulfur_dioxide" class="w3-input w3-border" type="number" value={{total_sulfur_dioxide}} placeholder="Between 0 and 300" min="0" max="300"
+                  step="1" id="total_sulfur_dioxide" required>
+              </div>
+              <div class="col">
+                <label></i>Red/White</label>
+                <input name="winetype" class="w3-input w3-border" type="number" value={{winetype}} placeholder="0 is White and 1 is Red" min="0" max="1"
+                  step="1" id="winetype" required>
+              </div>
+            </div>
+            <div class="row"></div>
+            <div class="col">
+              <!-- <label><i class="fa fa-search"></i> Predict </label> -->
+              <label></label>
+              <input type="submit" class="w3-button w3-block w3-black"></button>
+            </div>
+            <!-- </fieldset> -->
+        </div>
+        </form>
+        <div class="w3-row-padding">
+          <h3>Prediction:</h3>
+          <div>{{ prediction }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="Logistic" class="w3-container w3-white w3-padding-16 myLink">
+      <div class="w3-row-padding">
+        <h3>Logistic Regression Model</h3>
+        <p>Please enter the measures below to return your wine quality prediction.</p>
+
+        <form class="w3-container" action="{{ url_for('index') }}" method="POST">
+          <!-- <fieldset> -->
+          <div class="row">
+            <div class="col">
+              <label></i> Alcohol Content</label>
+              <input class="w3-input w3-border" type="number" placeholder="Usually 5 - 18%" min="5" max="20" step="0.5"
+                id="alcohol" required>
+            </div>
+
+            <div class="col">
+              <label></i> Density</label>
+              <input class="w3-input w3-border" type="number" placeholder="Between .99 and 1.01" min="0.99000"
+                max="1.01000" step="0.00001" id="density" required>
+            </div>
+
+            <div class="col">
+              <label></i> Chlorides </label>
+              <input class="w3-input w3-border" type="number" placeholder="Between 0 and 1" min="0.99000" max="1.01000"
+                step="0.00001" id="chlorides" required>
+            </div>
+
+            <div class="col">
+              <label></i>Volatile Acidity</label>
+              <input class="w3-input w3-border" type="number" placeholder="Between 0 and 2" min="0" max="2" step="0.01"
+                id="volatile acidity" required>
+            </div>
+
+            <div class="col">
+              <label><i class="fa fa-search"></i> Predict </label>
+              <input type="submit" class="w3-button w3-block w3-black">Submit</button>
+            </div>
+            <!-- </fieldset> -->
+          </div>
+        </form>
+      </div>
+
+      <div class="w3-row-padding">
+        <h3>Result</h3>
+        <div>{{ prediction }}</div>
+      </div>
+    </div>
+
+
+    <div id="Boost" class="w3-container w3-white w3-padding-16 myLink">
+      <div class="w3-row-padding">
+        <h3>Gradient Boosting Model</h3>
+        <p>Please enter the measures below to return your wine quality prediction.</p>
+
+        <form class="w3-container" action="{{ url_for('index') }}" method="POST">
+          <!-- <fieldset> -->
+          <div class="row">
+            <div class="col">
+              <label></i> Alcohol Content</label>
+              <input class="w3-input w3-border" type="number" placeholder="Usually 5 - 18%" min="5" max="20" step="0.5"
+                id="alcohol" required>
+            </div>
+
+            <div class="col">
+              <label></i> Density</label>
+              <input class="w3-input w3-border" type="number" placeholder="Between .99 and 1.01" min="0.99000"
+                max="1.01000" step="0.00001" id="density" required>
+            </div>
+
+            <div class="col">
+              <label></i> Chlorides </label>
+              <input class="w3-input w3-border" type="number" placeholder="Between 0 and 1" min="0.99000" max="1.01000"
+                step="0.00001" id="chlorides" required>
+            </div>
+
+            <div class="col">
+              <label></i>Volatile Acidity</label>
+              <input class="w3-input w3-border" type="number" placeholder="Between 0 and 2" min="0" max="2" step="0.01"
+                id="volatile acidity" required>
+            </div>
+
+            <div class="col">
+              <label><i class="fa fa-search"></i> Predict </label>
+              <input type="submit" class="w3-button w3-block w3-black">Submit</button>
+            </div>
+            <!-- </fieldset> -->
+          </div>
+        </form>
+      </div>
+
+      <div class="w3-row-padding">
+        <h3>Result</h3>
+        <div>{{ prediction }}</div>
+      </div>
+    </div>
+
+    </div>
+  </header>
+
+  <!-- Page content -->
+  <div class="w3-content" style="max-width:1100px;">
+
+  </div>
+
+  </div>
+
+  <div class="w3-row-padding w3-padding-16">
+    <div class="w3-half w3-margin-bottom">
+      <div class='tableauPlaceholder' id='viz1611876537245' style='position: relative'><noscript><a href='#'><img
+              alt=' '
+              src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Wi&#47;WineQuality-Correlation&#47;TypeCount&#47;1_rss.png'
+              style='border: none' />
+          </a></noscript><object class='tableauViz' style='display:none;'>
+          <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+          <param name='embed_code_version' value='3' />
+          <param name='site_root' value='' />
+          <param name='name' value='WineQuality-Correlation&#47;TypeCount' />
+          <param name='tabs' value='no' />
+          <param name='toolbar' value='yes' />
+          <param name='static_image'
+            value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Wi&#47;WineQuality-Correlation&#47;TypeCount&#47;1.png' />
+          <param name='animate_transition' value='yes' />
+          <param name='display_static_image' value='yes' />
+          <param name='display_spinner' value='yes' />
+          <param name='display_overlay' value='yes' />
+          <param name='display_count' value='yes' />
+          <param name='language' value='en' />
+          <param name='filter' value='publish=yes' />
+        </object>
+      </div>
+      <script type='text/javascript'>
+        var divElement = document.getElementById('viz1611876537245');
+        var vizElement = divElement.getElementsByTagName('object')[0];
+        vizElement.style.width = '100%'; vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px';
+        var scriptElement = document.createElement('script');
+        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+        vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+      </script>
+
+      <!-- <img src="/w3images/room_single.jpg" alt="Norway" style="width:100%"> -->
+      <!-- <div class="w3-container w3-white">
+            <h3>Single Room</h3>
+            <h6 class="w3-opacity">From $99</h6>
+            <p>Single bed</p>
+            <p>15m<sup>2</sup></p>
+            <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i></p>
+            <button class="w3-button w3-block w3-black w3-margin-bottom">Choose Room</button>
+          </div> -->
+    </div>
+    <!-- <div class="w3-half w3-margin-bottom">
+          <img src="/w3images/room_double.jpg" alt="Norway" style="width:100%">
+          <div class="w3-container w3-white">
+            <h3>Double Room</h3>
+            <h6 class="w3-opacity">From $149</h6>
+            <p>Queen-size bed</p>
+            <p>25m<sup>2</sup></p>
+            <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i> <i class="fa fa-tv"></i></p>
+            <button class="w3-button w3-block w3-black w3-margin-bottom">Choose Room</button>
+          </div>
+        </div>
+        <div class="w3-third w3-margin-bottom">
+          <img src="/w3images/room_deluxe.jpg" alt="Norway" style="width:100%">
+          <div class="w3-container w3-white">
+            <h3>Deluxe Room</h3>
+            <h6 class="w3-opacity">From $199</h6>
+            <p>King-size bed</p>
+            <p>40m<sup>2</sup></p>
+            <p class="w3-large"><i class="fa fa-bath"></i> <i class="fa fa-phone"></i> <i class="fa fa-wifi"></i> <i class="fa fa-tv"></i> <i class="fa fa-glass"></i> <i class="fa fa-cutlery"></i></p>
+            <button class="w3-button w3-block w3-black w3-margin-bottom">Choose Room</button>
+          </div>
+        </div> -->
+  </div>
+
+  <!-- <div class="w3-row-padding" id="about">
+        <div class="w3-col l4 12">
+          <h3>About</h3>
+          <h6>Our hotel is one of a kind. It is truely amazing. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</h6>
+        <p>We accept: <i class="fa fa-credit-card w3-large"></i> <i class="fa fa-cc-mastercard w3-large"></i> <i class="fa fa-cc-amex w3-large"></i> <i class="fa fa-cc-cc-visa w3-large"></i><i class="fa fa-cc-paypal w3-large"></i></p>
+        </div>
+        <div class="w3-col l8 12">
+          Image of location/map
+          <img src="/w3images/map.jpg" class="w3-image w3-greyscale" style="width:100%;">
+        </div>
+      </div> -->
+
+  <!-- <div class="w3-row-padding w3-large w3-center" style="margin:32px 0">
+        <div class="w3-third"><i class="fa fa-map-marker w3-text-red"></i> 423 Some adr, Chicago, US</div>
+        <div class="w3-third"><i class="fa fa-phone w3-text-red"></i> Phone: +00 151515</div>
+        <div class="w3-third"><i class="fa fa-envelope w3-text-red"></i> Email: mail@mail.com</div>
+      </div>
     
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
-   
-  </body>
+      <div class="w3-panel w3-red w3-leftbar w3-padding-32">
+        <h6><i class="fa fa-info w3-deep-orange w3-padding w3-margin-right"></i> On demand, we can offer playstation, babycall, children care, dog equipment, etc.</h6>
+      </div>
+    
+      <div class="w3-container">
+        <h3>Our Hotels</h3>
+        <h6>You can find our hotels anywhere in the world:</h6>
+      </div>
+      
+      <div class="w3-row-padding w3-padding-16 w3-text-white w3-large">
+        <div class="w3-half w3-margin-bottom">
+          <div class="w3-display-container">
+            <img src="/w3images/cinqueterre.jpg" alt="Cinque Terre" style="width:100%">
+            <span class="w3-display-bottomleft w3-padding">Cinque Terre</span>
+          </div>
+        </div>
+        <div class="w3-half">
+          <div class="w3-row-padding" style="margin:0 -16px">
+            <div class="w3-half w3-margin-bottom">
+              <div class="w3-display-container">
+                <img src="/w3images/newyork2.jpg" alt="New York" style="width:100%">
+                <span class="w3-display-bottomleft w3-padding">New York</span>
+              </div>
+            </div>
+            <div class="w3-half w3-margin-bottom">
+              <div class="w3-display-container">
+                <img src="/w3images/sanfran.jpg" alt="San Francisco" style="width:100%">
+                <span class="w3-display-bottomleft w3-padding">San Francisco</span>
+              </div>
+            </div>
+          </div>
+          <div class="w3-row-padding" style="margin:0 -16px">
+            <div class="w3-half w3-margin-bottom">
+              <div class="w3-display-container">
+                <img src="/w3images/pisa.jpg" alt="Pisa" style="width:100%">
+                <span class="w3-display-bottomleft w3-padding">Pisa</span>
+              </div>
+            </div>
+            <div class="w3-half w3-margin-bottom">
+              <div class="w3-display-container">
+                <img src="/w3images/paris.jpg" alt="Paris" style="width:100%">
+                <span class="w3-display-bottomleft w3-padding">Paris</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+  <!-- <div class="w3-container w3-padding-32 w3-black w3-opacity w3-card w3-hover-opacity-off" style="margin:32px 0;">
+        <h2>Get the best offers first!</h2>
+        <p>Join our newsletter.</p>
+        <label>E-mail</label>
+        <input class="w3-input w3-border" type="text" placeholder="Your Email address">
+        <button type="button" class="w3-button w3-red w3-margin-top">Subscribe</button>
+      </div> -->
+
+  <!-- <div class="w3-container" id="contact">
+        <h2>Contact</h2>
+        <p>If you have any questions, do not hesitate to ask them.</p>
+        <i class="fa fa-map-marker w3-text-red" style="width:30px"></i> Chicago, US<br>
+        <i class="fa fa-phone w3-text-red" style="width:30px"></i> Phone: +00 151515<br>
+        <i class="fa fa-envelope w3-text-red" style="width:30px"> </i> Email: mail@mail.com<br>
+        <form action="/action_page.php" target="_blank">
+          <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required name="Name"></p>
+          <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Email" required name="Email"></p>
+          <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Message" required name="Message"></p>
+          <p><button class="w3-button w3-black w3-padding-large" type="submit">SEND MESSAGE</button></p>
+        </form>
+      </div> -->
+
+  <!-- End page content -->
+  </div>
+
+  <!-- Footer -->
+  <!-- <footer class="w3-padding-32 w3-black w3-center w3-margin-top">
+      <h5>Find Us On</h5>
+      <div class="w3-xlarge w3-padding-16">
+        <i class="fa fa-facebook-official w3-hover-opacity"></i>
+        <i class="fa fa-instagram w3-hover-opacity"></i>
+        <i class="fa fa-snapchat w3-hover-opacity"></i>
+        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+        <i class="fa fa-twitter w3-hover-opacity"></i>
+        <i class="fa fa-linkedin w3-hover-opacity"></i>
+      </div>
+      <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+    </footer> -->
+
+
+  <script src="https://kit.fontawesome.com/4af64f8f8d.js" crossorigin="anonymous"></script>
+
+  <script>
+    // Tabs
+    function openLink(evt, linkName) {
+      var i, x, tablinks;
+      x = document.getElementsByClassName("myLink");
+      for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablink");
+      for (i = 0; i < x.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+      }
+      document.getElementById(linkName).style.display = "block";
+      evt.currentTarget.className += " w3-red";
+    }
+
+    // Click on the first tablink on load
+    document.getElementsByClassName("tablink")[0].click();
+  </script>
+
+  <!-- Add Google Maps -->
+  <!-- <script>
+    function myMap() {
+      myCenter=new google.maps.LatLng(41.878114, -87.629798);
+      var mapOptions= {
+        center:myCenter,
+        zoom:12, scrollwheel: false, draggable: false,
+        mapTypeId:google.maps.MapTypeId.ROADMAP
+      };
+      var map=new google.maps.Map(document.getElementById("googleMap"),mapOptions);
+    
+      var marker = new google.maps.Marker({
+        position: myCenter,
+      });
+      marker.setMap(map);
+    }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script> -->
+  <!--
+    To use this code on your website, get a free API key from Google.
+    Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp -->
+
+
+</body>
+
 </html>

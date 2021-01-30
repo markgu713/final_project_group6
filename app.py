@@ -6,9 +6,12 @@ from keras.models import load_model
 from sklearn.preprocessing import LabelEncoder
 
 # load model
-model = load_model('model/deep_learning_model.h5')
+deep_learning_model = load_model('model/deep_learning_model.h5')
+
+logistic_regression_model = load_model('model/logistic_model.h5')
+
 # summarize model.
-model.summary()
+# deep_learning_model.summary()
 
 # data = {'fixed acidity':  [5.8, 7.1],
 #         'volatile acidity': [0.300, 0.26],
@@ -81,12 +84,20 @@ def index():
                                          'free sulfur dioxide', 'total sulfur dioxide', 'density', 'pH', 'sulphates', 'alcohol', 'winetype'])
         X_scaler = MinMaxScaler().fit(df)
         test_scaled = X_scaler.transform(df)
-        encoded_predictions = model.predict_classes(test_scaled[:2])
-        if encoded_predictions[1] == 0:
-            final_prediction = "Bad Quality!"
+
+        deep_learning_encoded_predictions = deep_learning_model.predict_classes(test_scaled[:2])
+        logistic_regression_encoded_predictions = logistic_regression_model.predict_classes(test_scaled[:2])
+        
+        if deep_learning_encoded_predictions[1] == 0:
+            final_deep_learning_prediction = "Bad Quality!"
         else:
-            final_prediction = "Good Quality!"
-        return render_template('index.html', prediction=final_prediction, fixed_acidity=fixed_acidity, volatile_acidity=volatile_acidity, citric_acid=citric_acid, residual_sugar=residual_sugar, chlorides=chlorides, free_sulfur_dioxide=free_sulfur_dioxide, total_sulfur_dioxide=total_sulfur_dioxide, density=density, pH=pH, sulphates=sulphates, alcohol=alcohol, winetype=winetype)
+            final_deep_learning_prediction = "Good Quality!"
+
+        if logistic_regression_encoded_predictions[1] == 0:
+            final_logistic_regression_prediction = "Bad Quality!"
+        else:
+            final_logistic_regression_prediction = "Good Quality!"    
+        return render_template('index.html', deep_learning_prediction=final_deep_learning_prediction, logistic_regression_prediction = final_logistic_regression_prediction, fixed_acidity=fixed_acidity, volatile_acidity=volatile_acidity, citric_acid=citric_acid, residual_sugar=residual_sugar, chlorides=chlorides, free_sulfur_dioxide=free_sulfur_dioxide, total_sulfur_dioxide=total_sulfur_dioxide, density=density, pH=pH, sulphates=sulphates, alcohol=alcohol, winetype=winetype)
     else:
         return render_template('index.html')
 

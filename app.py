@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 from flask import Flask, jsonify, render_template, request
 from keras.models import load_model

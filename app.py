@@ -1,14 +1,16 @@
 import numpy as np
 import pandas as pd
-from sklearn.preprocessing import MinMaxScaler
 from flask import Flask, jsonify, render_template, request
 from keras.models import load_model
-from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import MinMaxScaler, StandardScaler, LabelEncoder
+import joblib
 
 # load model
 deep_learning_model = load_model('model/deep_learning_model.h5')
 
-logistic_regression_model = load_model('model/logistic_model.h5')
+logistic_regression_model = joblib.load('model/logistic_model.h5')
+
+gradient_boosting_model = joblib.load('model/gradient_boosting_model.h5')
 
 # summarize model.
 # deep_learning_model.summary()
@@ -86,8 +88,9 @@ def index():
         test_scaled = X_scaler.transform(df)
 
         deep_learning_encoded_predictions = deep_learning_model.predict_classes(test_scaled[:2])
-        logistic_regression_encoded_predictions = logistic_regression_model.predict_classes(test_scaled[:2])
-        
+        logistic_regression_encoded_predictions = logistic_regression_model.predict(test_scaled[:2])
+        gradient_boosting_encoded_predictions = gradient_boosting_model.predict(test_scaled[:2])
+
         if deep_learning_encoded_predictions[1] == 0:
             final_deep_learning_prediction = "Bad Quality!"
         else:
@@ -96,8 +99,14 @@ def index():
         if logistic_regression_encoded_predictions[1] == 0:
             final_logistic_regression_prediction = "Bad Quality!"
         else:
-            final_logistic_regression_prediction = "Good Quality!"    
-        return render_template('index.html', deep_learning_prediction=final_deep_learning_prediction, logistic_regression_prediction = final_logistic_regression_prediction, fixed_acidity=fixed_acidity, volatile_acidity=volatile_acidity, citric_acid=citric_acid, residual_sugar=residual_sugar, chlorides=chlorides, free_sulfur_dioxide=free_sulfur_dioxide, total_sulfur_dioxide=total_sulfur_dioxide, density=density, pH=pH, sulphates=sulphates, alcohol=alcohol, winetype=winetype)
+            final_logistic_regression_prediction = "Good Quality!"
+
+        if gradient_boosting_encoded_predictions[1] < 7:
+            final_gradient_boosting_prediction = "Bad Quality!"
+        else:
+            final_gradient_boosting_prediction = "Good Quality!"
+
+        return render_template('index.html', gradient_boosting_prediction = final_gradient_boosting_prediction, deep_learning_prediction=final_deep_learning_prediction, logistic_regression_prediction = final_logistic_regression_prediction, fixed_acidity=fixed_acidity, volatile_acidity=volatile_acidity, citric_acid=citric_acid, residual_sugar=residual_sugar, chlorides=chlorides, free_sulfur_dioxide=free_sulfur_dioxide, total_sulfur_dioxide=total_sulfur_dioxide, density=density, pH=pH, sulphates=sulphates, alcohol=alcohol, winetype=winetype)
     else:
         return render_template('index.html')
 

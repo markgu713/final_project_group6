@@ -10,7 +10,9 @@ deep_learning_model = load_model('model/deep_learning_model.h5')
 
 logistic_regression_model = joblib.load('model/logistic_model.h5')
 
-gradient_boosting_model = joblib.load('model/gradient_boosting_model.h5')
+svm_model = joblib.load('model/SVM.h5')
+
+#gradient_boosting_model = joblib.load('model/gradient_boosting_model.h5')
 
 # summarize model.
 # deep_learning_model.summary()
@@ -89,7 +91,10 @@ def index():
 
         deep_learning_encoded_predictions = deep_learning_model.predict_classes(test_scaled[:2])
         logistic_regression_encoded_predictions = logistic_regression_model.predict(test_scaled[:2])
-        gradient_boosting_encoded_predictions = gradient_boosting_model.predict(test_scaled[:2])
+        svm_encoded_predictions = svm_model.predict(test_scaled[:2])
+        #gradient_boosting_encoded_predictions = gradient_boosting_model.predict(test_scaled[:2])
+
+
 
         if deep_learning_encoded_predictions[1] == 0:
             final_deep_learning_prediction = "Bad Quality!"
@@ -101,12 +106,17 @@ def index():
         else:
             final_logistic_regression_prediction = "Good Quality!"
 
-        if gradient_boosting_encoded_predictions[1] < 7:
-            final_gradient_boosting_prediction = "Bad Quality!"
+        if svm_encoded_predictions[1] == 0:
+            final_svm_prediction = "Bad Quality!"
         else:
-            final_gradient_boosting_prediction = "Good Quality!"
+            final_svm_prediction = "Good Quality!"
 
-        return render_template('index.html', gradient_boosting_prediction = final_gradient_boosting_prediction, deep_learning_prediction=final_deep_learning_prediction, logistic_regression_prediction = final_logistic_regression_prediction, fixed_acidity=fixed_acidity, volatile_acidity=volatile_acidity, citric_acid=citric_acid, residual_sugar=residual_sugar, chlorides=chlorides, free_sulfur_dioxide=free_sulfur_dioxide, total_sulfur_dioxide=total_sulfur_dioxide, density=density, pH=pH, sulphates=sulphates, alcohol=alcohol, winetype=winetype)
+        # if gradient_boosting_encoded_predictions[1] < 7:
+        #     final_gradient_boosting_prediction = "Bad Quality!"
+        # else:
+        #     final_gradient_boosting_prediction = "Good Quality!"
+
+        return render_template('index.html', svm_prediction = final_svm_prediction, deep_learning_prediction=final_deep_learning_prediction, logistic_regression_prediction = final_logistic_regression_prediction, fixed_acidity=fixed_acidity, volatile_acidity=volatile_acidity, citric_acid=citric_acid, residual_sugar=residual_sugar, chlorides=chlorides, free_sulfur_dioxide=free_sulfur_dioxide, total_sulfur_dioxide=total_sulfur_dioxide, density=density, pH=pH, sulphates=sulphates, alcohol=alcohol, winetype=winetype)
     else:
         return render_template('index.html')
 

@@ -136,6 +136,11 @@ def index():
 def about():
     return render_template("about.html")
 
+@app.route("/data")
+@app.route("/data.html")
+def data():
+    return render_template("data.html")
+
 if __name__ == "__main__":
     #app.debug = True
     app.run()

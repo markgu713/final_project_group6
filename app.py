@@ -1,14 +1,21 @@
 import numpy as np
 import pandas as pd
-from sklearn.preprocessing import MinMaxScaler
 from flask import Flask, jsonify, render_template, request
 from keras.models import load_model
-from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import MinMaxScaler, StandardScaler, LabelEncoder
+import joblib
 
 # load model
-model = load_model('model/deep_learning_model.h5')
+deep_learning_model = load_model('model/deep_learning_model.h5')
+
+logistic_regression_model = joblib.load('model/logistic_model.h5')
+
+svm_model = joblib.load('model/SVM.h5')
+
+#gradient_boosting_model = joblib.load('model/gradient_boosting_model.h5')
+
 # summarize model.
-model.summary()
+# deep_learning_model.summary()
 
 # data = {'fixed acidity':  [5.8, 7.1],
 #         'volatile acidity': [0.300, 0.26],
@@ -81,15 +88,42 @@ def index():
                                          'free sulfur dioxide', 'total sulfur dioxide', 'density', 'pH', 'sulphates', 'alcohol', 'winetype'])
         X_scaler = MinMaxScaler().fit(df)
         test_scaled = X_scaler.transform(df)
-        encoded_predictions = model.predict_classes(test_scaled[:2])
-        if encoded_predictions[1] == 0:
-            final_prediction = "Bad Quality!"
+
+        deep_learning_encoded_predictions = deep_learning_model.predict_classes(test_scaled[:2])
+        logistic_regression_encoded_predictions = logistic_regression_model.predict(test_scaled[:2])
+        svm_encoded_predictions = svm_model.predict(test_scaled[:2])
+        #gradient_boosting_encoded_predictions = gradient_boosting_model.predict(test_scaled[:2])
+
+
+
+        if deep_learning_encoded_predictions[1] == 0:
+            final_deep_learning_prediction = "Bad Quality!"
         else:
-            final_prediction = "Good Quality!"
-        return render_template('index.html', prediction=final_prediction, fixed_acidity=fixed_acidity, volatile_acidity=volatile_acidity, citric_acid=citric_acid, residual_sugar=residual_sugar, chlorides=chlorides, free_sulfur_dioxide=free_sulfur_dioxide, total_sulfur_dioxide=total_sulfur_dioxide, density=density, pH=pH, sulphates=sulphates, alcohol=alcohol, winetype=winetype)
+            final_deep_learning_prediction = "Good Quality!"
+
+        if logistic_regression_encoded_predictions[1] == 0:
+            final_logistic_regression_prediction = "Bad Quality!"
+        else:
+            final_logistic_regression_prediction = "Good Quality!"
+
+        if svm_encoded_predictions[1] == 0:
+            final_svm_prediction = "Bad Quality!"
+        else:
+            final_svm_prediction = "Good Quality!"
+
+        # if gradient_boosting_encoded_predictions[1] < 7:
+        #     final_gradient_boosting_prediction = "Bad Quality!"
+        # else:
+        #     final_gradient_boosting_prediction = "Good Quality!"
+
+        return render_template('index.html', svm_prediction = final_svm_prediction, deep_learning_prediction=final_deep_learning_prediction, logistic_regression_prediction = final_logistic_regression_prediction, fixed_acidity=fixed_acidity, volatile_acidity=volatile_acidity, citric_acid=citric_acid, residual_sugar=residual_sugar, chlorides=chlorides, free_sulfur_dioxide=free_sulfur_dioxide, total_sulfur_dioxide=total_sulfur_dioxide, density=density, pH=pH, sulphates=sulphates, alcohol=alcohol, winetype=winetype)
     else:
         return render_template('index.html')
 
+@app.route("/about")
+@app.route("/about.html")
+    def about():
+        return render_template("about.html")
 
 if __name__ == "__main__":
     # app.debug = True

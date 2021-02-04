@@ -3,10 +3,9 @@
 We created a tool that determines the quality of wines depending on its physiochemical properties: **[VINTLY](https://wine-quality-vintly.herokuapp.com/)**. 
 
 1. Pick a dataset
-2. Store it in buckets within AWS
-3. Clean data in jupyter notebook and store it in postgres
-4. we could train the model in jupyter notebook and then store the results in table or back in postgres
-5. Use flask and html to display the results in webpage
+2. Clean data in jupyter notebook
+3. Train the model in jupyter notebook then save the models 
+5. Use flask and html to visually render the results on a webpage
 
 note: we could have a live machine learning algo or app to generate results off an upload of a picture. (could use some web scraping to get online info).
 

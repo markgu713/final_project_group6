@@ -26,7 +26,9 @@ Attribute information:
    Output variable (based on sensory data): 
    12 - Quality (score between 0 and 10)
 
-**Description of Attributes**
+<br /><br />
+
+**Description of Attributes**<br />
 1 - Fixed acidity: most acids involved with wine or fixed or nonvolatile (do not evaporate readily)
 
 2 - Volatile acidity: the amount of acetic acid in wine, which at too high of levels can lead to an unpleasant, vinegar taste
